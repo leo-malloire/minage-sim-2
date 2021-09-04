@@ -23,3 +23,6 @@ td,
 button {
   display: inline-block;
 }
+.rien td{
+  border: 0px;
+}

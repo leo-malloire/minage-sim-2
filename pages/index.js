@@ -1,37 +1,84 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { useState , useEffect, Dispatch, setStateAction} from 'react'
+import { useState, useEffect, Dispatch, setStateAction } from "react";
 
-var click = 0;
-var fer = 0;
+var charbon = 0;
+var textAssi = "None";
+var money = 0;
 
 function minFer() {
-  fer += 1;
-  console.log(fer);
-  document.getElementById("showFer").innerHTML = fer;
+  document.getElementById("textAssiH2").innerHTML = textAssi;
+  textAssi = "Scan en cours du sol";
+  document.getElementById("textAssiH2").innerHTML = textAssi;
+  setTimeout(function () {
+    textAssi = "Minerai trouvé !";
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+  }, 1000);
+  setTimeout(function () {
+    textAssi = "Minage en cours";
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+  }, 2000);
+  setTimeout(function () {
+    textAssi = "Minage terminé";
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+    charbon += Math.floor(Math.random() * (11 - 4)) + 4;
+    document.getElementById("showCharbon").innerHTML = charbon;
+  }, 5000);
+  setTimeout(function () {
+    textAssi = "Minage terminé";
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+  }, 6000);
 }
-function minage() {
-  click += 1;
+function sell() {
+  document.getElementById("textAssiH2").innerHTML = textAssi;
+  textAssi = "Assistant : Calcul en cours des bénéfices";
+  document.getElementById("textAssiH2").innerHTML = textAssi;
+  setTimeout(function () {
+    textAssi = "Assistant : Vous allez gagner :" + (charbon*0.5);
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+  }, 3000);
+  setTimeout(function(){
+    textAssi = "Assistant : Vente en cours";
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+    money += (charbon*0.5);
+    document.getElementById("showMoney").innerHTML = money;
+  }, 4000);
+  setTimeout(function(){
+    textAssi = "Assistant : Vente terminé";
+    document.getElementById("textAssiH2").innerHTML = textAssi;
+  }, 6000);
 }
-
 export default function Home() {
-  document.getElementById("showFer").innerHTML = fer;
   return (
     <div className={styles.container}>
       <h1>Minage simulator v2</h1>
-      <button onClick={minage}>Miner</button>
-      <button onClick={minFer}>fer</button>
+      <h2 id="textAssiH2">Assistant : Que voulez vous faire humain ?</h2>
       <div className="tablediv">
-        <p>Inventaire :</p>
+        <p>Actions</p>
+        <table className="rien">
+          <tr>
+            <td>Minner :</td>
+            <td>
+              <button onClick={minFer}>charbon</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div className="tablediv">
+        <p>Inventaire</p>
+        <button onClick={sell}>Tout vendre</button>
         <table>
           <tr>
-            <td>Fer :</td>
+            <td>Coin :</td>
+            <td>Charbon :</td>
             <td>Cuivre :</td>
           </tr>
           <tr>
+            <td><span id="showMoney">0</span></td>
             <td>
-              <span id="showFer"></span>
+              <span id="showCharbon">0</span>
             </td>
             <td>0</td>
           </tr>
