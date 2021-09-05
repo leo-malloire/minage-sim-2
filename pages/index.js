@@ -144,15 +144,15 @@ export default function Home() {
         className={classes.root}
       >
         <BottomNavigationAction
-          label="Recents"
+          label="Actions"
           icon={<span className="material-icons">list</span>}
         />
         <BottomNavigationAction
-          label="Favorites"
+          label="Inventaire"
           icon={<span className="material-icons">inventory_2</span>}
         />
         <BottomNavigationAction
-          label="Nearby"
+          label="Paramètres"
           icon={<span className="material-icons">settings</span>}
         />
       </BottomNavigation>

@@ -20,12 +20,13 @@ a {
   border: 3px solid black;
   border-radius: 10px;
   margin: 10px;
-  min-width: 390px;
+  min-width: none;
   max-width: 390px;
   padding: 10px;
+  width: 100%;
 }
 .buttonstyle{
-  min-width: 175px;
+  min-width: none;
   max-width: 175px;
 
 }
@@ -34,7 +35,8 @@ a {
   justify-content: space-between;
 }
 table{
-  max-width: 390px;
+  min-width: none;
+  max-width: 380px;
 }
 @media screen and (min-width: 600px) {
   
