@@ -33,6 +33,14 @@ export default function Home() {
   );
   const [currentPanel, setCurrentPanel] = useState("actions");
 
+  function upDetecFunc() {
+    setTextAssi("L'upgrade vous coutera 500 coins")
+    setTimeout(function() {
+      if (totalCoin >= 500) {
+        setTextAssi("Mise a joru en cours du détecteur pour l'ajout de nouveaux minerais ...")
+      }
+    }, 1000)
+  }
   function sell() {
     setTextAssi("Assistant : Calcul en cours des bénéfices");
     setTimeout(function () {
@@ -218,7 +226,6 @@ export default function Home() {
           <TableContainer component={Paper} style={{ minWidth: 0 }}>
             <Table
               className={classes.table}
-              size="small"
               aria-label="a dense table"
             >
               <TableHead>
