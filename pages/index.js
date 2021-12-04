@@ -1,28 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { useState, useEffect, Dispatch, setStateAction } from "react";
 import { upMachine } from "../components/upgrades";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
 
 export default function Home() {
-  const classes = useStyles();
   const [value, setValue] = useState(0);
   const [totalCharbon, setTotalCharbon] = useState(0);
   const [totalCoin, setTotalCoin] = useState(0);
@@ -34,12 +15,14 @@ export default function Home() {
   const [currentPanel, setCurrentPanel] = useState("actions");
 
   function upDetecFunc() {
-    setTextAssi("L'upgrade vous coutera 500 coins")
-    setTimeout(function() {
+    setTextAssi("L'upgrade vous coutera 500 coins");
+    setTimeout(function () {
       if (totalCoin >= 500) {
-        setTextAssi("Mise a joru en cours du détecteur pour l'ajout de nouveaux minerais ...")
+        setTextAssi(
+          "Mise a joru en cours du détecteur pour l'ajout de nouveaux minerais ..."
+        );
       }
-    }, 1000)
+    }, 1000);
   }
   function sell() {
     setTextAssi("Assistant : Calcul en cours des bénéfices");
@@ -63,11 +46,12 @@ export default function Home() {
   }
   function minFer(fer) {
     fer += Math.floor(Math.random() * (6 - 1)) + 1;
-    return fer
-  }function minCharbon(charbon) {
+    return fer;
+  }
+  function minCharbon(charbon) {
     charbon += Math.floor(Math.random() * (11 - 4)) + 4;
-    return charbon
-  }  
+    return charbon;
+  }
   function minDialog(ore) {
     setTextAssi("Scan en cours du sol");
     setTimeout(function () {
@@ -83,7 +67,6 @@ export default function Home() {
       } else if (ore === "charbon") {
         setTotalCharbon(minCharbon(totalCharbon));
       } else if (ore === "cuivre") {
-        
       }
     }, 5000);
     setTimeout(function () {
@@ -103,7 +86,7 @@ export default function Home() {
   ];
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link
           rel="stylesheet"
@@ -118,160 +101,100 @@ export default function Home() {
       </Head>
       <h2 id="textAssiH2">{textAssi}</h2>
       {currentPanel === "actions" && (
-        <div className="tablediv" id="actions">
+        <div className="tablediv panCenter panFlex" id="actions">
           <p>Actions</p>
-          <p>Minner :</p>
-          <div className="spacebetween">
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                minDialog("charbon");
-              }}
-            >
-              charbon (revente : 0.5 coin)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                minDialog("fer");
-              }}
-            >
-              fer (revente : 1 coin)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={minFer}
-            >
-              Cuivre (revente : 1 coin)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={minFer}
-            >
-              or (revente : 1 coin)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={minFer}
-            >
-              diamant (revente : 1 coin)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={minFer}
-            >
-              platine (revente : 1 coin)
-            </Button>
+          <div>
+            <p>Minner :</p>
+            <div className="spacebetween">
+              <div
+                className="btn2"
+                onClick={() => {
+                  minDialog("charbon");
+                }}
+              >
+                <p>charbon (revente : 0.5 coin)</p>
+              </div>
+              <div
+                className="btn2"
+                onClick={() => {
+                  minDialog("fer");
+                }}
+              >
+                <p>fer (revente : 1 coin)</p>
+              </div>
+              <div className="btn2" onClick={minFer}>
+                <p>Cuivre (revente : 1 coin)</p>
+              </div>
+              <div className="btn2" onClick={minFer}>
+                <p>or (revente : 1 coin)</p>
+              </div>
+              <div className="btn2" onClick={minFer}>
+                <p>diamant (revente : 1 coin)</p>
+              </div>
+              <div className="btn2" onClick={minFer}>
+                <p>platine (revente : 1 coin)</p>
+              </div>
+            </div>
           </div>
-          <p>Améliorer :</p>
-          <div className="spacebetween">
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={upMachine}
-            >
-              Machine (plus de minerai récolté)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={upMachine}
-            >
-              Détecteur (débloquage de nouveaux minerais)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={upMachine}
-            >
-              Fonderie (lingots se vent plus cher)
-            </Button>
-            <Button
-              className="buttonstyle"
-              variant="contained"
-              color="primary"
-              onClick={upMachine}
-            >
-              Employés (minage automatique)
-            </Button>
+          <div>
+            <p>Améliorer :</p>
+            <div className="spacebetween">
+              <div className="btn2" onClick={upMachine}>
+                <p>Machine (plus de minerai récolté)</p>
+              </div>
+              <div className="btn2" onClick={upMachine}>
+                <p>Détecteur (débloquage de nouveaux minerais)</p>
+              </div>
+              <div className="btn2" onClick={upMachine}>
+                <p>Fonderie (lingots se vent plus cher)</p>
+              </div>
+              <div className="btn2" onClick={upMachine}>
+                <p>Employés (minage automatique)</p>
+              </div>
+            </div>
           </div>
         </div>
       )}
       {currentPanel === "inventory" && (
-        <div className="tablediv" id="inventory">
-          <p>Inventaire</p>
-          <Button
-            className="buttonstyle"
-            variant="contained"
-            color="primary"
-            onClick={() => setTotalCoin(sell(totalCoin))}
-          >
-            Tout vendre
-          </Button>
-          <TableContainer component={Paper} style={{ minWidth: 0 }}>
-            <Table
-              className={classes.table}
-              aria-label="a dense table"
+        <div className="tablediv panCenter panFlex" id="inventory">
+          <div className="inline">
+            <p>Inventaire</p>
+            <div
+              className="btn sellbtn"
+              onClick={() => setTotalCoin(sell(totalCoin))}
             >
-              <TableHead>
-                <TableRow>
-                  <TableCell>Item</TableCell>
-                  <TableCell align="right">Nombre</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.name}>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              <p>Tout vendre</p>
+            </div>
+            <table>
+              <tr>
+                <td>Item</td>
+                <td align="right">Nombre</td>
+              </tr>
+              {rows.map((row) => (
+                <tr key={row.name}>
+                  <td component="th" scope="row">
+                    {row.name}
+                  </td>
+                  <td align="right">{row.calories}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
         </div>
       )}
       <div className="bottomnav">
-        <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          showLabels
-          className={classes.root}
+        <div className="btn" onClick={() => setCurrentPanel("actions")}>
+          <p>Actions</p>
+        </div>
+        <div
+          className="btn middlebtn"
+          onClick={() => setCurrentPanel("inventory")}
         >
-          <BottomNavigationAction
-            label="Actions"
-            icon={<span className="material-icons">list</span>}
-            onClick={() => setCurrentPanel("actions")}
-          />
-          <BottomNavigationAction
-            label="Inventaire"
-            icon={<span className="material-icons">inventory_2</span>}
-            onClick={() => setCurrentPanel("inventory")}
-          />
-          <BottomNavigationAction
-            label="Paramètres"
-            icon={<span className="material-icons">settings</span>}
-          />
-        </BottomNavigation>
+          <p>Inventaire</p>
+        </div>
+        <div className="btn">
+          <p>Paramètres</p>
+        </div>
       </div>
     </div>
   );
