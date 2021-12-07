@@ -98,6 +98,10 @@ export default function Home() {
         />
         <meta name="description" content="Un jeu de minage" />
         <title>Minage simulator v2</title>
+        <meta
+          name="propeller"
+          content="4244c28808b68bba3ab204062aa3a5fb"
+        ></meta>
       </Head>
       <h2 id="textAssiH2">{textAssi}</h2>
       {currentPanel === "actions" && (
