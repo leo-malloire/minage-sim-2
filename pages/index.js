@@ -13,13 +13,15 @@ export default function Home() {
     "Assistant : Que voulez vous faire ?"
   );
   const [currentPanel, setCurrentPanel] = useState("actions");
+  const [hasLoaded, setHasLoaded] = useState(false);
+  useEffect(() => setHasLoaded(true), []);
 
   function upDetecFunc() {
     setTextAssi("L'upgrade vous coutera 500 coins");
     setTimeout(function () {
       if (totalCoin >= 500) {
         setTextAssi(
-          "Mise a joru en cours du détecteur pour l'ajout de nouveaux minerais ..."
+          "Mise a jour en cours du détecteur pour l'ajout de nouveaux minerais ..."
         );
       }
     }, 1000);
@@ -98,10 +100,6 @@ export default function Home() {
         />
         <meta name="description" content="Un jeu de minage" />
         <title>Minage simulator v2</title>
-        <meta
-          name="propeller"
-          content="4244c28808b68bba3ab204062aa3a5fb"
-        ></meta>
       </Head>
       <h2 id="textAssiH2">{textAssi}</h2>
       {currentPanel === "actions" && (
@@ -186,6 +184,7 @@ export default function Home() {
           </div>
         </div>
       )}
+
       <div className="bottomnav">
         <div className="btn" onClick={() => setCurrentPanel("actions")}>
           <p>Actions</p>
